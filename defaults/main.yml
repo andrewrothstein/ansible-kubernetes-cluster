@@ -4,7 +4,10 @@ k8s_user: k8s
 k8s_group: k8s
 k8s_home_dir: /var/kubernetes
 
-k8s_src_pki_dir: ~/pki
+k8s_secure: True
+k8s_src_pki_dir: ~/pki-dir
+k8s_pki_key_suffix: '-key.pem'
+k8s_pki_cert_suffix: '.pem'
 
 #k8s_init: systemd
 k8s_conf_dir: /etc/kubernetes
