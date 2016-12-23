@@ -1,0 +1,24 @@
+---
+- name: create host pki dir
+  become: yes
+  become_user: root
+  file: >-
+    state=directory
+    path={{k8s_dest_pki_dir}}
+    owner={{k8s_user}}
+    group={{k8s_group}}
+    mode=0700
+
+- name: install keys/certs
+  become: yes
+  become_user: root
+  with_items:
+    - { f: '{{k8s_pki_key_src}}', d: '{{k8s_pki_key_dest}}', m: '0400' }
+    - { f: '{{k8s_pki_cert_src}}', d: '{{k8s_pki_cert_dest}}', m: '0600'}
+    - { f: '{{k8s_pki_ca_cert_src}}', d: '{{k8s_pki_ca_cert_dest}}', m: '0600' }
+  copy: >-
+    src={{item.f}}
+    dest={{item.d}}
+    owner={{k8s_user}}
+    group={{k8s_group}}
+    mode={{item.m}}

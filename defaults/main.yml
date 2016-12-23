@@ -1,0 +1,17 @@
+---
+# defaults file for kubernetes-cluster
+k8s_user: k8s
+k8s_group: k8s
+k8s_home_dir: /var/kubernetes
+
+k8s_src_pki_dir: ~/pki
+
+#k8s_init: systemd
+k8s_conf_dir: /etc/kubernetes
+k8s_dest_pki_dir: /etc/kubernetes/pki
+k8s_components:
+  - kube-apiserver
+  - kube-controller-manager
+  - kube-proxy
+  - kube-scheduler
+  - kubelet

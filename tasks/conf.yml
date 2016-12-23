@@ -1,0 +1,23 @@
+---
+- name: make conf dir
+  become: yes
+  become_user: root
+  file: >-
+    path={{k8s_conf_dir}}
+    owner={{k8s_user}}
+    group={{k8s_group}}
+    state=directory
+    mode=0755
+
+- name: configurating components...
+  become: yes
+  become_user: root
+  with_items:
+    - config
+    - '{{k8s_components}}'
+  template: >-
+    src=environ/{{item}}.j2
+    dest={{k8s_conf_dir}}/{{item}}
+    owner={{k8s_user}}
+    group={{k8s_group}}
+    mode=0644
