@@ -11,3 +11,8 @@ k8s_pki_cert_dest : '{{k8s_dest_pki_dir}}/{{k8s_pki_cert_file}}'
 k8s_pki_ca_file : 'ca{{k8s_pki_cert_suffix}}'
 k8s_pki_ca_cert_src: '{{k8s_src_pki_dir}}/{{k8s_pki_ca_file}}'
 k8s_pki_ca_cert_dest : '{{k8s_dest_pki_dir}}/{{k8s_pki_ca_file}}'
+
+k8s_etcd_prefix: '{% if k8_secured|default(True) %}https{% else %}http{% endif %}'
+k8s_etcd_servers: '{% for h in groups["etcd-master"] %}{{k8s_etcd_prefix}}://{{ hostvars[h]["inventory_hostname"] }}:2379{% if not loop.last %},{% endif %}{% endfor %}'
+
+k8s_apiserver_prefix: '{% if k8_secured|default(True) %}https{% else %}http{% endif %}'

@@ -16,7 +16,7 @@ KUBE_LOGTOSTDERR="--logtostderr=true"
 KUBE_LOG_LEVEL="--v=0"
 
 # Should this cluster be allowed to run privileged docker containers
-KUBE_ALLOW_PRIV="--allow-privileged=false"
+KUBE_ALLOW_PRIV="--allow-privileged={{k8s_allow_priv|to_json}}"
 
 # How the controller-manager, scheduler, and proxy find the apiserver
-KUBE_MASTER="--master=http://127.0.0.1:8080"
+KUBE_MASTER="--master={{k8s_apiserver_prefix}}://127.0.0.1:8080"

@@ -5,10 +5,10 @@ After=network.target
 After=etcd.service
 
 [Service]
-EnvironmentFile=-/etc/kubernetes/config
-EnvironmentFile=-/etc/kubernetes/apiserver
-User=kube
-ExecStart=/usr/bin/kube-apiserver \
+EnvironmentFile=-{{k8s_conf_dir}}/config
+EnvironmentFile=-{{k8s_conf_dir}}/apiserver
+User={{k8s_user}}
+ExecStart={{k8s_install_dir}}/kube-apiserver \
 	    $KUBE_LOGTOSTDERR \
 	    $KUBE_LOG_LEVEL \
 	    $KUBE_ETCD_SERVERS \

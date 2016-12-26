@@ -10,6 +10,7 @@ k8s_pki_key_suffix: '-key.pem'
 k8s_pki_cert_suffix: '.pem'
 
 #k8s_init: systemd
+k8s_install_dir : /usr/local/bin
 k8s_conf_dir: /etc/kubernetes
 k8s_dest_pki_dir: /etc/kubernetes/pki
 k8s_components:
@@ -18,3 +19,14 @@ k8s_components:
   - kube-proxy
   - kube-scheduler
   - kubelet
+
+k8s_service_cluster_ip_range: 10.254.0.0/16
+k8s_admission_control:
+  - NamespaceLifecycle
+  - LimitRanger
+  - SecurityContextDeny
+  - ServiceAccount
+  - ResourceQuota
+
+#k8s_kube_api_args: -a -b -c
+k8s_allow_priv: False
