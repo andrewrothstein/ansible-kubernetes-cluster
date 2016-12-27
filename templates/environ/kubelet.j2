@@ -7,9 +7,6 @@ KUBELET_ADDRESS="--address={{k8s_kubelet_address}}"
 # The port for the info server to serve on
 KUBELET_PORT="--port={{k8s_kubelet_port}}"
 
-# You may leave this blank to use the actual hostname
-KUBELET_HOSTNAME="--hostname-override={{k8s_kubelet_hostname|default(inventory_hostname)}}"
-
 # location of the api-server
 KUBELET_API_SERVER="--kubeconfig={{k8s_home_dir}}/kubeconfig"
 

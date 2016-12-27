@@ -9,7 +9,11 @@ User={{k8s_user}}
 ExecStart={{k8s_install_dir}}/kube-controller-manager \
 	    $KUBE_LOGTOSTDERR \
 	    $KUBE_LOG_LEVEL \
-	    $KUBE_MASTER \
+	    $KUBE_CONFIG \
+	    $KUBE_SERVICE_ADDRESSES \
+	    $KUBE_CLUSTER_ADDRESSES \
+	    $KUBE_CONTROLLER_MANAGER_ADDRESS \
+	    $KUBE_CONTROLLER_MANAGER_PORT \
 	    $KUBE_CONTROLLER_MANAGER_ARGS
 Restart=on-failure
 LimitNOFILE=65536

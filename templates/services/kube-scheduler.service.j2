@@ -9,7 +9,9 @@ User={{k8s_user}}
 ExecStart={{k8s_install_dir}}/kube-scheduler \
 	    $KUBE_LOGTOSTDERR \
 	    $KUBE_LOG_LEVEL \
-	    $KUBE_MASTER \
+	    $KUBE_CONFIG \
+	    $KUBE_SCHEDULER_ADDRESS \
+	    $KUBE_SCHEDULER_PORT \
 	    $KUBE_SCHEDULER_ARGS
 Restart=on-failure
 LimitNOFILE=65536

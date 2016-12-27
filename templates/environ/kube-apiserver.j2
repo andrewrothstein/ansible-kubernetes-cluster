@@ -13,9 +13,6 @@ KUBE_API_PORT="--insecure-port={{k8s_apiserver_insecure_port}}{% if k8s_secured 
 # Comma separated list of nodes in the etcd cluster
 KUBE_ETCD_SERVERS="--etcd-servers={{k8s_etcd_servers}}"
 
-# Address range to use for services
-KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range={{k8s_service_cluster_ip_range}}"
-
 # default admission control policies
 KUBE_ADMISSION_CONTROL="--admission-control={{k8s_admission_control|join(',')}}"
 

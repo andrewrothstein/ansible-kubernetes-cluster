@@ -18,5 +18,16 @@ KUBE_LOG_LEVEL="--v=0"
 # Should this cluster be allowed to run privileged docker containers
 KUBE_ALLOW_PRIV="--allow-privileged={{k8s_allow_priv|to_json}}"
 
+# Address range to use for services
+KUBE_SERVICE_ADDRESSES="--service-cluster-ip-range={{k8s_service_cluster_ip_range}}"
+
+# Address range to user for pods
+KUBE_CLUSTER_ADDRESSES="--cluster-cidr={{k8s_pod_cluster_cidr}}"
+
+# the local kube config
 # How the controller-manager, scheduler, and proxy find the apiserver
-KUBE_MASTER="--master={{k8s_apiserver_prefix}}://{{k8s_apiserver_secure_address}}:{{k8s_apiserver_secure_port}}"
+KUBE_CONFIG="--kubeconfig {{k8s_home_dir}}/kubeconfig"
+
+# You may leave this blank to use the actual hostname
+KUBE_HOSTNAME_OVERRIDE="--hostname-override={{k8s_hostname_override|default(inventory_hostname)}}"
+

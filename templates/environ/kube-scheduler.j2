@@ -1,7 +1,3 @@
-###
-# kubernetes scheduler config
-
-# default config should be adequate
-
-# Add your own!
-KUBE_SCHEDULER_ARGS="{{k8s_kube_scheduler_args|default('')}}"
+KUBE_SCHEDULER_ADDRESS="--address {{k8s_kube_scheduler_address}}"
+KUBE_SCHEDULER_PORT="--port {{k8s_kube_scheduler_port}}"
+KUBE_SCHEDULER_ARGS="{{k8s_kube_scheduler_args}}"
