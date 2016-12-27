@@ -4,4 +4,4 @@
 # default config should be adequate
 
 # Add your own!
-KUBE_SCHEDULER_ARGS=""
+KUBE_SCHEDULER_ARGS="{{k8s_kube_scheduler_args|default('')}}"

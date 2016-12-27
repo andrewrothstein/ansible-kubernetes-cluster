@@ -16,7 +16,7 @@ k8s_etcd_prefix: '{% if k8_secured|default(True) %}https{% else %}http{% endif %
 k8s_etcd_servers: '{% for h in groups["etcd-master"] %}{{k8s_etcd_prefix}}://{{ hostvars[h]["inventory_hostname"] }}:2379{% if not loop.last %},{% endif %}{% endfor %}'
 
 k8s_apiserver_prefix: '{% if k8_secured|default(True) %}https{% else %}http{% endif %}'
-k8a_apiserver_hostanme: '{{inventory_hostname}}'
+k8s_apiserver_hostname: '{{inventory_hostname}}'
 k8s_apiserver_port: 8080
 
-k8s_kubelet_hostname: '{{inventory_hostanme}}'
+k8s_kubelet_hostname: '{{inventory_hostname}}'

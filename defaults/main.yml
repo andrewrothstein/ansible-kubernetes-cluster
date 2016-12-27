@@ -2,7 +2,7 @@
 # defaults file for kubernetes-cluster
 k8s_user: k8s
 k8s_group: k8s
-k8s_home_dir: /var/kubernetes
+k8s_home_dir: /var/lib/kubelet
 
 k8s_secure: True
 k8s_src_pki_dir: ~/pki-dir

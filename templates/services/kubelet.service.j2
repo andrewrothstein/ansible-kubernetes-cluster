@@ -5,10 +5,10 @@ After=docker.service
 Requires=docker.service
 
 [Service]
-WorkingDirectory=/var/lib/kubelet
-EnvironmentFile=-/etc/kubernetes/config
-EnvironmentFile=-/etc/kubernetes/kubelet
-ExecStart=/usr/bin/kubelet \
+WorkingDirectory={{k8s_home_dir}}
+EnvironmentFile=-{{k8s_conf_dir}}/config
+EnvironmentFile=-{{k8s_conf_dir}}/kubelet
+ExecStart={{k8s_install_dir}}/kubelet \
 	    $KUBE_LOGTOSTDERR \
 	    $KUBE_LOG_LEVEL \
 	    $KUBELET_API_SERVER \
