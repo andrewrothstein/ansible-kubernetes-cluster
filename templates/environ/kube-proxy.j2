@@ -1,7 +1,3 @@
 ###
 # kubernetes proxy config
-
-# default config should be adequate
-
-# Add your own!
-KUBE_PROXY_ARGS="{{k8s_kube_proxy_args|default('')}}"
+KUBE_PROXY_ARGS="{{k8s_kube_proxy_args}}"

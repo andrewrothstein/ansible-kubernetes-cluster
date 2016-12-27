@@ -14,7 +14,9 @@
     home={{k8s_home_dir}}
     state=present
 
-- include: conf.yml
 - include: pki.yml
-  when: '{{k8s_secured|default(True)}}'
+  when: '{{k8s_secured}}'
+  
+- include: conf.yml
+
 - include: '{{k8s_init|default("systemd")}}.yml'
