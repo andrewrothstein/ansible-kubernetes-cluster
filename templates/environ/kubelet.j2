@@ -2,16 +2,16 @@
 # kubernetes kubelet (minion) config
 
 # The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)
-KUBELET_ADDRESS="--address=127.0.0.1"
+KUBELET_ADDRESS="--address={{k8s_kubelet_address}}"
 
 # The port for the info server to serve on
-# KUBELET_PORT="--port=10250"
+KUBELET_PORT="--port={{k8s_kubelet_port}}"
 
 # You may leave this blank to use the actual hostname
 KUBELET_HOSTNAME="--hostname-override={{k8s_kubelet_hostname|default(inventory_hostname)}}"
 
 # location of the api-server
-KUBELET_API_SERVER="--api-servers={{k8s_apiserver_prefix}}://{{k8s_apiserver_hostname}}:{{k8s_apiserver_port}}"
+KUBELET_API_SERVER="--api-servers={{k8s_apiserver_prefix}}://{{k8s_apiserver_insecure_address}}:{{k8s_apiserver_secure_port}}"
 
 # Add your own!
-KUBELET_ARGS="{{k8s_kubelet_args|default('')}}"
+KUBELET_ARGS="{{k8s_kubelet_args}}"

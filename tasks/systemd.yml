@@ -23,4 +23,4 @@
   service: >-
     name={{item}}
     enabled=yes
-    state=started
+    state=restarted

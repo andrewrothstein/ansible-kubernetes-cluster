@@ -4,7 +4,7 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 EnvironmentFile=-{{k8s_conf_dir}}/config
-EnvironmentFile=-{{k8s_conf_dir}}/scheduler
+EnvironmentFile=-{{k8s_conf_dir}}/kube-scheduler
 User={{k8s_user}}
 ExecStart={{k8s_install_dir}}/kube-scheduler \
 	    $KUBE_LOGTOSTDERR \

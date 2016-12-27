@@ -4,7 +4,7 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 EnvironmentFile=-{{k8s_conf_dir}}/config
-EnvironmentFile=-{{k8s_conf_dir}}/controller-manager
+EnvironmentFile=-{{k8s_conf_dir}}/kube-controller-manager
 User={{k8s_user}}
 ExecStart={{k8s_install_dir}}/kube-controller-manager \
 	    $KUBE_LOGTOSTDERR \

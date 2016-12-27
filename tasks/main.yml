@@ -10,6 +10,7 @@
   user: >-
     name={{k8s_user}}
     group={{k8s_group}}
+    groups=docker
     home={{k8s_home_dir}}
     state=present
 

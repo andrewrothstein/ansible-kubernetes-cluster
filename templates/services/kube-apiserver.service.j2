@@ -6,7 +6,7 @@ After=etcd.service
 
 [Service]
 EnvironmentFile=-{{k8s_conf_dir}}/config
-EnvironmentFile=-{{k8s_conf_dir}}/apiserver
+EnvironmentFile=-{{k8s_conf_dir}}/kube-apiserver
 User={{k8s_user}}
 ExecStart={{k8s_install_dir}}/kube-apiserver \
 	    $KUBE_LOGTOSTDERR \
