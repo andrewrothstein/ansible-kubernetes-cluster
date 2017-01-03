@@ -1,0 +1,5 @@
+---
+- src: andrewrothstein.kubernetes
+  version: v1.0.0
+- src: andrewrothstein.kubectl
+  version: v1.0.5
