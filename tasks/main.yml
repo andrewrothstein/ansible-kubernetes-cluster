@@ -14,6 +14,16 @@
     home={{k8s_home_dir}}
     state=present
 
+- name: change k8s dir ownership to k8s user
+  become: yes
+  become_user: root
+  file: >-
+    path={{k8s_home_dir}}
+    owner={{k8s_user}}
+    group={{k8s_group}}
+    state=directory
+    mode=0755 
+
 - include: pki.yml
   when: '{{k8s_secured}}'
   
