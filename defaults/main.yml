@@ -36,19 +36,13 @@ k8s_allow_priv: False
 
 k8s_network_iface: eth0
 
-k8s_apiserver_insecure_address: '0.0.0.0'
-k8s_apiserver_secure_address: '127.0.0.1'
+k8s_apiserver_insecure_address: '127.0.0.1'
 k8s_apiserver_insecure_port: 8080
 k8s_apiserver_secure_port: 6443
 k8s_apiserver_token: JKQ8n5stwH5UaTjfWNH4qli2bharF5wM
 
-k8s_kubelet_address: '127.0.0.1'
 k8s_kubelet_port: 10250
 
-k8s_kube_controller_manager_address: '127.0.0.1'
 k8s_kube_controller_manager_port: 10252
 
-k8s_kube_proxy_address: '127.0.0.1'
-
-k8s_kube_scheduler_address: '127.0.0.1'
 k8s_kube_scheduler_port: 10251
