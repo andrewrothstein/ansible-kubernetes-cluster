@@ -31,7 +31,7 @@ k8s_apiserver_token_auth: '--token_auth_file={{k8s_conf_dir}}/kube-apiserver-kno
 k8s_apiserver_args: '{{k8s_apiserver_storage_backend}} {{k8s_apiserver_etcd_tls}} {{k8s_apiserver_tls}} {{k8s_apiserver_kubelet_tls}} {{k8s_apiserver_token_auth}}'
 
 k8s_kubelet_tls: '{% if k8s_secured %}--tls-cert-file {{k8s_pki_cert_dest}} --tls-private-key-file {{k8s_pki_key_dest}}{% endif %}'
-k8s_kubelet_args: '--node-ip {{k8s_public_ipv4}} {{k8s_kubelet_tls}}'
+k8s_kubelet_args: '--node-ip {{k8s_public_ipv4}} {{k8s_kubelet_tls}} --register-node=true'
 
 k8s_kube_controller_manager_args: '{% if k8s_secured %}--root-ca-file={{k8s_pki_ca_cert_dest}} --service-account-private-key-file={{k8s_pki_key_dest}}{% endif %}'
 
