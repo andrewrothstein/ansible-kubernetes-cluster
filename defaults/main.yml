@@ -24,7 +24,7 @@ k8s_components:
 
 k8s_pod_cluster_cidr: 10.253.0.0/16
 k8s_service_cluster_ip_range: 10.254.0.0/16
-k8s_cluster_dns: 10.254.0.1
+k8s_cluster_dns: 10.254.0.2
 k8s_cluster_domain: 'cluster.local'
 k8s_admission_control:
   - NamespaceLifecycle
