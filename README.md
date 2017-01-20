@@ -1,4 +1,4 @@
-fouadsemaan.kubernetes-cluster
+andrewrothstein.kubernetes-cluster
 =========
 
 Configures a Kubernetes cluster. Assumes you have a secured etcd cluster.
@@ -38,7 +38,7 @@ playbook.yml
 ```yml
 - hosts: kubernetes
   roles:
-    - fouadsemaan.kubernetes-cluster
+    - andrewrothstein.kubernetes-cluster
 ```
 
 License
@@ -50,4 +50,3 @@ Author Information
 ------------------
 
 Andrew Rothstein <andrew.rothstein@gmail.com>
-Fouad Semaan <semaanfouad@gmail.com>
