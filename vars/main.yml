@@ -28,7 +28,7 @@ k8s_apiserver_etcd_tls: '{% if k8s_secured %}--etcd-cafile {{k8s_pki_ca_cert_des
 k8s_apiserver_tls: '{% if k8s_secured %}--tls-ca-file {{k8s_pki_ca_cert_dest}} --tls-cert-file {{k8s_pki_cert_dest}} --tls-private-key-file {{k8s_pki_key_dest}}{% endif %}'
 k8s_apiserver_kubelet_tls: '{% if k8s_secured %}--kubelet-https --kubelet-certificate-authority {{k8s_pki_ca_cert_dest}} --kubelet-client-certificate {{k8s_pki_cert_dest}} --kubelet-client-key {{k8s_pki_key_dest}}{% endif %}'
 k8s_apiserver_token_auth: '--token_auth_file={{k8s_conf_dir}}/kube-apiserver-known-tokens.csv'
-k8s_apiserver_args: '{{k8s_apiserver_storage_backend}} {{k8s_apiserver_etcd_tls}} {{k8s_apiserver_tls}} {{k8s_apiserver_kubelet_tls}} {{k8s_apiserver_token_auth}} --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP'
+k8s_apiserver_args: '{{k8s_apiserver_storage_backend}} {{k8s_apiserver_etcd_tls}} {{k8s_apiserver_tls}} {{k8s_apiserver_kubelet_tls}} {{k8s_apiserver_token_auth}} --kubelet-preferred-address-types={{k8s_apiserver_kubelet_address_types}}'
 
 k8s_kubelet_tls: '{% if k8s_secured %}--tls-cert-file {{k8s_pki_cert_dest}} --tls-private-key-file {{k8s_pki_key_dest}}{% endif %}'
 k8s_kubelet_args: '--node-ip {{k8s_public_ipv4}} {{k8s_kubelet_tls}} --register-schedulable=true --api-servers={{k8s_apiserver_prefix}}://{{k8s_apiserver_secure_address}}:{{k8s_apiserver_secure_port}} --cluster_dns={{k8s_cluster_dns}} --cluster_domain={{k8s_cluster_domain}}'
