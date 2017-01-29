@@ -15,6 +15,7 @@ k8s_pki_cert_suffix: '.pem'
 k8s_install_dir : /usr/local/bin
 k8s_conf_dir: /etc/kubernetes
 k8s_dest_pki_dir: /etc/kubernetes/pki
+
 k8s_worker_components: 
   - kubelet
   - kube-proxy
@@ -23,8 +24,8 @@ k8s_master_components:
   - kube-controller-manager
   - kube-scheduler
 
-k8s_master: True
-
+k8s_master_group_name: kubernetes-master
+  
 k8s_pod_cluster_cidr: 10.253.0.0/16
 k8s_service_cluster_ip_range: 10.254.0.0/16
 k8s_cluster_dns: 10.254.0.2
@@ -40,11 +41,12 @@ k8s_admission_control:
 k8s_allow_priv: False
 
 k8s_network_iface: eth0
-k8s_public_ipv4: '{{ hostvars[inventory_hostname]["ansible_" + k8s_network_iface]["ipv4"]["address"]}}'
-k8s_apiserver_secure_address: '{{k8s_public_ipv4}}'
+k8s_apiserver_secure_port: 6443
+k8s_apiserver_etcd_backend: etcd3
+
 k8s_apiserver_insecure_address: '127.0.0.1'
 k8s_apiserver_insecure_port: 8080
-k8s_apiserver_secure_port: 6443
+
 k8s_apiserver_token: JKQ8n5stwH5UaTjfWNH4qli2bharF5wM
 k8s_apiserver_kubelet_address_types:
   - InternalIP

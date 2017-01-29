@@ -28,7 +28,14 @@ host1
 host2
 ...
 
+# all masters and workers
 [kubernetes]
+hostA
+hostB
+...
+
+# only kubernetes masters
+[kubernetes-master]
 hostA
 hostB
 ...
@@ -49,4 +56,5 @@ MIT
 Author Information
 ------------------
 
-Andrew Rothstein <andrew.rothstein@gmail.com>
+* Andrew Rothstein <andrew.rothstein@gmail.com>
+* Fouad Semaan

@@ -3,7 +3,6 @@
   become: yes
   become_user: root
   with_items: '{{k8s_components}}'
-  when: '{{k8s_master or item in k8s_worker_components}}' 
   register: k8s_service_modified
   template: >-
     src=services/{{item}}.service.j2
@@ -19,7 +18,7 @@
 - name: start services...
   become: yes
   become_user: root
-  when: '{{k8s_launch|default(True) and (k8s_master or item in k8s_worker_components)}}'
+  when: '{{k8s_launch|default(True)}}'
   with_items: '{{k8s_components}}'
   service: >-
     name={{item}}
