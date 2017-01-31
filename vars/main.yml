@@ -33,7 +33,7 @@ k8s_apiserver_kubelet_tls: '{% if k8s_secured %}--kubelet-https --kubelet-certif
 k8s_apiserver_token_auth: '--token_auth_file={{k8s_conf_dir}}/kube-apiserver-known-tokens.csv'
 k8s_apiserver_args: '{{k8s_apiserver_storage_backend}} {{k8s_apiserver_etcd_tls}} {{k8s_apiserver_tls}} {{k8s_apiserver_kubelet_tls}} {{k8s_apiserver_token_auth}} --kubelet-preferred-address-types={{k8s_apiserver_kubelet_address_types | join(",")}}'
 
-k8s_apiserver_secure_addresses: "{% for m in groups[k8s_master_group_name] %}{{k8s_apiserver_prefix}}://{{hostvars[m]['ansible_' + hostvars[m]['k8s_network_iface']]['ipv4']['address']}}:{{k8s_apiserver_secure_port}}{% if not loop.last %},{% endif %}{% endfor %}"
+k8s_apiserver_secure_addresses: "{% for m in groups[k8s_master_group_name] %}{{k8s_apiserver_prefix}}://{{hostvars[m]['ansible_' + k8s_network_iface]['ipv4']['address']}}:{{k8s_apiserver_secure_port}}{% if not loop.last %},{% endif %}{% endfor %}"
 k8s_apiserver_first_master: '{{groups[k8s_master_group_name][0]}}'
 k8s_apiserver_secure_lb_eff: "{% if k8s_apiserver_secure_lb is defined %}{{k8s_apiserver_secure_lb}}{% else %}{{k8s_apiserver_prefix}}://{{hostvars[k8s_apiserver_first_master]['ansible_' + k8s_network_iface]['ipv4']['address']}}:{{k8s_apiserver_secure_port}}{% else %}{% endif %}"
 
