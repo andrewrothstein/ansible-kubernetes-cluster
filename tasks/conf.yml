@@ -23,6 +23,8 @@
   become: yes
   become_user: '{{k8s_user}}'
   command: '{{k8s_install_dir}}/kubeconfig.sh {{k8s_home_dir}}/kubeconfig'
+  environment:
+    K8S_APISERVER_TOKEN: '{{k8s_apiserver_token}}'
   args:
     creates: '{{k8s_home_dir}}/kubeconfig'
 

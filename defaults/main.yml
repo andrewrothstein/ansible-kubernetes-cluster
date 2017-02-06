@@ -2,6 +2,9 @@
 # defaults file for kubernetes-cluster
 k8s_user: k8s
 k8s_group: k8s
+k8s_user_id: 1007
+k8s_group_id: 1018
+
 k8s_home_dir: /var/lib/kubelet
 
 k8s_cluster_name: mykubecluster
