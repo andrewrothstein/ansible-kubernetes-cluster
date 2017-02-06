@@ -25,7 +25,7 @@
   become: yes
   become_user: root
   debug:
-    var: getent_passwd
+    msg: "{{getent_passwd[k8s_user][1]}}"
   register: k8s_user_id
 
 - name: change k8s dir ownership to k8s user
