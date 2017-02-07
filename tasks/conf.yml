@@ -9,22 +9,15 @@
     state=directory
     mode=0755
 
-- name: write helper scripts...
-  become: yes
-  become_user: root
-  with_items:
-    - kubeconfig.sh
-  template: >-
-    src=bin/{{item}}.j2
-    dest={{k8s_install_dir}}/{{item}}
-    mode=0755
-    
 - name: write kubeconfig...
   become: yes
   become_user: '{{k8s_user}}'
-  command: '{{k8s_install_dir}}/kubeconfig.sh {{k8s_home_dir}}/kubeconfig'
-  args:
-    creates: '{{k8s_home_dir}}/kubeconfig'
+  with_items:
+    - kubeconfig
+  template:
+    src: environ/{{item}}.j2
+    dest: '{{k8s_home_dir}}/{{item}}'
+    mode: 0600
 
 - name: configurating components...
   become: yes

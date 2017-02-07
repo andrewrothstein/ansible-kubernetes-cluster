@@ -59,3 +59,8 @@ k8s_kubelet_port: 10250
 k8s_kube_controller_manager_port: 10252
 
 k8s_kube_scheduler_port: 10251
+
+#k8s_nonsystem_users:
+#  - name: foo
+#    uid: 9999
+#    token: 2acf2c6a-ecae-11e6-861e-07b09e188bff

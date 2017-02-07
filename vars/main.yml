@@ -52,3 +52,5 @@ k8s_kube_controller_manager_args: '{% if k8s_secured %}--root-ca-file={{k8s_pki_
 k8s_kube_proxy_args: ''
 
 k8s_kube_scheduler_args: '--leader-elect=true'
+
+k8s_context_name: '{{k8s_cluster_name}}_{{k8s_user}}_context'
