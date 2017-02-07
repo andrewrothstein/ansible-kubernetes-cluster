@@ -2,12 +2,12 @@
 - name: make conf dir
   become: yes
   become_user: root
-  file: >-
-    path={{k8s_conf_dir}}
-    owner={{k8s_user}}
-    group={{k8s_group}}
-    state=directory
-    mode=0755
+  file:
+    path: '{{k8s_conf_dir}}'
+    owner: '{{k8s_user}}'
+    group: '{{k8s_group}}'
+    state: directory
+    mode: '0755'
 
 - name: write kubeconfig...
   become: yes
@@ -26,10 +26,9 @@
     - config
     - kube-apiserver-known-tokens.csv
     - '{{k8s_components}}'
-  template: >-
-    src=environ/{{item}}.j2
-    dest={{k8s_conf_dir}}/{{item}}
-    owner={{k8s_user}}
-    group={{k8s_group}}
-    mode=0644
-
+  template:
+    src: environ/{{item}}.j2
+    dest: '{{k8s_conf_dir}}/{{item}}'
+    owner: '{{k8s_user}}'
+    group: '{{k8s_group}}'
+    mode: '0644'

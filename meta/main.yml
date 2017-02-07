@@ -27,5 +27,4 @@ dependencies:
   - role: andrewrothstein.kubernetes
     version: v1.0.0
   - role: andrewrothstein.kubectl
-    version: v1.0.5
-  
+    version: v1.0.6
