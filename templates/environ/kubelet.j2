@@ -7,8 +7,5 @@ KUBELET_ADDRESS="--address={{k8s_kubelet_address}}"
 # The port for the info server to serve on
 KUBELET_PORT="--port={{k8s_kubelet_port}}"
 
-# location of the api-server
-KUBELET_API_SERVER="--kubeconfig={{k8s_home_dir}}/kubeconfig"
-
 # Add your own!
 KUBELET_ARGS="{{k8s_kubelet_args}}"

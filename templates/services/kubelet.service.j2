@@ -11,12 +11,11 @@ EnvironmentFile=-{{k8s_conf_dir}}/kubelet
 ExecStart={{k8s_install_dir}}/kubelet \
 	    $KUBE_LOGTOSTDERR \
 	    $KUBE_LOG_LEVEL \
-	    $KUBELET_API_SERVER \
-	    $KUBELET_ADDRESS \
-	    $KUBELET_PORT \
+	    $KUBE_CONFIG \
 	    $KUBE_HOSTNAME_OVERRIDE \
 	    $KUBE_ALLOW_PRIV \
-	    $KUBE_CONFIG \
+	    $KUBELET_ADDRESS \
+	    $KUBELET_PORT \
 	    $KUBELET_ARGS
 Restart=on-failure
 KillMode=process
