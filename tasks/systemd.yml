@@ -3,24 +3,10 @@
   become: yes
   become_user: root
   with_items: '{{k8s_components}}'
-  register: k8s_service_modified
   template:
     src: services/{{item}}.service.j2
     dest: /etc/systemd/system/{{item}}.service
     mode: '0644'
-
-- name: systemctl daemon-reload
-  become: yes
-  become_user: root
-  when: k8s_service_modified|changed
-  command: systemctl daemon-reload
-  
-- name: start services...
-  become: yes
-  become_user: root
-  when: '{{k8s_launch|default(True)}}'
-  with_items: '{{k8s_components}}'
-  service:
-    name: '{{item}}'
-    enabled: yes
-    state: started
+  notify:
+    - systemctl daemon-reload
+    - restarting k8s services

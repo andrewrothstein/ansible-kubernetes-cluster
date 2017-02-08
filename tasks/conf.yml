@@ -2,22 +2,33 @@
 - name: make conf dir
   become: yes
   become_user: root
+  with_items:
+    - d: '{{k8s_conf_dir}}'
+      m: '0755'
+    - d: '{{k8s_home_dir}}/.kube'
+      m: '0700'
   file:
-    path: '{{k8s_conf_dir}}'
+    path: '{{item.d}}'
     owner: '{{k8s_user}}'
     group: '{{k8s_group}}'
     state: directory
-    mode: '0755'
+    mode: '{{item.m}}'
 
 - name: write kubeconfig...
   become: yes
-  become_user: '{{k8s_user}}'
+  become_user: root
   with_items:
-    - kubeconfig
+    - s: environ/kubeconfig.j2
+      d: '{{k8s_kubeconfig}}'
+      m: '0600'
   template:
-    src: environ/{{item}}.j2
-    dest: '{{k8s_home_dir}}/{{item}}'
-    mode: 0600
+    src: '{{item.s}}'
+    dest: '{{item.d}}'
+    mode: '{{item.m}}'
+    owner: '{{k8s_user}}'
+    group: '{{k8s_group}}'
+  notify:
+    - restarting k8s services
 
 - name: configurating components...
   become: yes
@@ -32,3 +43,5 @@
     owner: '{{k8s_user}}'
     group: '{{k8s_group}}'
     mode: '0644'
+  notify:
+    - restarting k8s services

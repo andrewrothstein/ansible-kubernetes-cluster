@@ -1,2 +1,16 @@
 ---
 # handlers file for kubernetes-cluster
+- name: systemctl daemon-reload
+  become: yes
+  become_user: root
+  when: '{{k8s_launch|default(True)}}'
+  command: systemctl daemon-reload
+
+- name: restarting k8s services
+  become: yes
+  become_user: root
+  when: '{{k8s_launch|default(True)}}'
+  with_items: '{{k8s_components}}'
+  service:
+    name: '{{item}}'
+    state: restarted
