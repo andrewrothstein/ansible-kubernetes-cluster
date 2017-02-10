@@ -46,3 +46,6 @@
 - include: conf.yml
 
 - include: '{{k8s_init|default("systemd")}}.yml'
+
+- include: addons.yml
+  when: '{{k8s_install_addons | default(True)}}'
