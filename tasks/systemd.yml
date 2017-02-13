@@ -3,10 +3,23 @@
   become: yes
   become_user: root
   with_items: '{{k8s_components}}'
+  register: k8s_services
   template:
     src: services/{{item}}.service.j2
     dest: /etc/systemd/system/{{item}}.service
     mode: '0644'
-  notify:
-    - systemctl daemon-reload
-    - restarting k8s services
+
+- name: systemctl daemon-reload
+  become: yes
+  become_user: root
+  when: '{{k8s_launch|default(True) and k8s_services.changed }}'
+  command: systemctl daemon-reload
+
+- name: restarting k8s services
+  become: yes
+  become_user: root
+  when: '{{k8s_launch|default(True) and ( k8s_config.changed or k8s_env.changed or k8s_services.changed )}}'
+  with_items: '{{k8s_components}}'
+  service:
+    name: '{{item}}'
+    state: restarted
