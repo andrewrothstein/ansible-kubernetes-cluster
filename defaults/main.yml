@@ -64,3 +64,16 @@ k8s_kube_scheduler_port: 10251
 #  - name: foo
 #    uid: 9999
 #    token: 2acf2c6a-ecae-11e6-861e-07b09e188bff
+
+# Disable installation of addons by setting following parameter to False
+#k8s_install_addons: True
+
+# TODO :
+# 1. Add traefik ingress controller
+# 2. Add hipster with influxDB - https://github.com/kubernetes/heapster
+# 3. Make node-problem-detector work [Needs k8s_allow_priv=True]
+k8s_cluster_addons:
+  - kube-dns
+  - kube-dns-autoscaler
+  - kube-dashboard
+  #- node-problem-detector

@@ -1,0 +1,37 @@
+---
+- name: create addons directory
+  become: yes
+  become_user: root
+  file:
+    path: '{{k8s_addons_dir}}'
+    owner: '{{k8s_user}}'
+    group: '{{k8s_group}}'
+    state: directory
+    mode: 0755
+
+- name: copy deployment/service definition to addons directory
+  become: yes
+  become_user: '{{k8s_user}}'
+  with_items: '{{k8s_cluster_addons}}'
+  template:
+    src: addons/{{item}}.yml.j2
+    dest: '{{k8s_addons_dir}}/{{item}}.yml'
+    mode: 0644
+
+- name: copy kube-addon-manager definition to all hosts
+  become: yes
+  become_user: '{{k8s_user}}'
+  with_items:
+    - kube-addon-manager.yml
+  template:
+    src: deployments/{{item}}.j2
+    dest: '{{k8s_conf_dir}}/{{item}}'
+    mode: 0644
+
+- name: apply kube-addon-manager definition from first apiserver master node
+  become: yes
+  become_user: '{{k8s_user}}'
+  with_items:
+    - kube-addon-manager.yml
+  when: k8s_apiserver_first_master == inventory_hostname
+  command: '{{k8s_install_dir}}/kubectl apply -f {{k8s_conf_dir}}/{{item}}'

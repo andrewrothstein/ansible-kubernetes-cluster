@@ -17,6 +17,7 @@
 - name: write kubeconfig...
   become: yes
   become_user: root
+  register: k8s_config
   with_items:
     - s: environ/kubeconfig.j2
       d: '{{k8s_kubeconfig}}'
@@ -27,12 +28,11 @@
     mode: '{{item.m}}'
     owner: '{{k8s_user}}'
     group: '{{k8s_group}}'
-  notify:
-    - restarting k8s services
 
 - name: configurating components...
   become: yes
   become_user: root
+  register: k8s_env
   with_items:
     - config
     - kube-apiserver-known-tokens.csv
