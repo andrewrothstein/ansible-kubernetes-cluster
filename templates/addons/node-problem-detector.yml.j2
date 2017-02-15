@@ -21,7 +21,6 @@ spec:
         - --kernel-monitor=/config/kernel-monitor.json
         - --logtostderr
         image: gcr.io/google_containers/node-problem-detector:v0.2
-        imagePullPolicy: Always
         securityContext:
           privileged: true
         env:
