@@ -12,7 +12,8 @@
   user:
     name: '{{k8s_user}}'
     group: '{{k8s_group}}'
-    groups: docker
+    append: yes
+    groups: '{{ks8_addl_groups}}'
     home: '{{k8s_home_dir}}'
     state: present
 
