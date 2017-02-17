@@ -35,7 +35,8 @@ k8s_apiserver_tls: '{% if k8s_secured %}--tls-ca-file {{k8s_pki_ca_cert_dest}} -
 k8s_apiserver_kubelet_tls: '{% if k8s_secured %}--kubelet-https --kubelet-certificate-authority {{k8s_pki_ca_cert_dest}} --kubelet-client-certificate {{k8s_pki_cert_dest}} --kubelet-client-key {{k8s_pki_key_dest}}{% endif %}'
 k8s_apiserver_token_auth: '--token_auth_file={{k8s_conf_dir}}/kube-apiserver-known-tokens.csv'
 k8s_apiserver_kat: '{% if k8s_apiserver_kubelet_address_types is defined %}--kubelet-preferred-address-types={{k8s_apiserver_kubelet_address_types | join(",")}}{% endif %}'
-k8s_apiserver_args: '{{k8s_apiserver_storage_backend}} {{k8s_apiserver_etcd_tls}} {{k8s_apiserver_tls}} {{k8s_apiserver_kubelet_tls}} {{k8s_apiserver_token_auth}} {{k8s_apiserver_kat}}'
+k8s_apiserver_count: '--apiserver-count={{groups[k8s_master_group_name] | length | int}}'
+k8s_apiserver_args: '{{k8s_apiserver_storage_backend}} {{k8s_apiserver_etcd_tls}} {{k8s_apiserver_tls}} {{k8s_apiserver_kubelet_tls}} {{k8s_apiserver_token_auth}} {{k8s_apiserver_kat}} {{k8s_apiserver_count}}'
 
 k8s_apiserver_first_master: '{{groups[k8s_master_group_name][0]}}'
 k8s_apiserver_secure_lb_eff: "{% if k8s_apiserver_secure_lb is defined %}{{k8s_apiserver_secure_lb}}{% else %}{{k8s_apiserver_prefix}}://{{hostvars[k8s_apiserver_first_master]['ansible_' + k8s_network_iface]['ipv4']['address']}}:{{k8s_apiserver_secure_port}}{% endif %}"
