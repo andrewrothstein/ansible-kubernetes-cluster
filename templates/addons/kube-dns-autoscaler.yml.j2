@@ -42,4 +42,4 @@ spec:
           # If using small nodes, "nodesPerReplica" should dominate.
           - --default-params={"linear":{"coresPerReplica":256,"nodesPerReplica":16,"min":1}}
           - --logtostderr=true
-          - --v=2
+          - --v={{k8s_log_level}}

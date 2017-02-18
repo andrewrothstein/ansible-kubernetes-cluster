@@ -70,7 +70,7 @@ spec:
         args:
         - --domain={{k8s_cluster_domain}}.
         - --dns-port=10053
-        - --v=2
+        - --v={{k8s_log_level}}
         ports:
         - containerPort: 10053
           name: dns-local
@@ -118,7 +118,7 @@ spec:
           successThreshold: 1
           failureThreshold: 5
         args:
-        - --v=2
+        - --v={{k8s_log_level}}
         - --logtostderr
         - --probe=kubedns,127.0.0.1:10053,kubernetes.default.svc.{{k8s_cluster_domain}},5,A
         - --probe=dnsmasq,127.0.0.1:53,kubernetes.default.svc.{{k8s_cluster_domain}},5,A

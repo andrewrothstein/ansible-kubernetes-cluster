@@ -36,8 +36,8 @@ k8s_cluster_domain: 'cluster.local'
 k8s_admission_control:
   - NamespaceLifecycle
   - LimitRanger
-  - SecurityContextDeny
   - ServiceAccount
+  - DefaultStorageClass
   - ResourceQuota
 
 #k8s_kube_api_args: -a -b -c
