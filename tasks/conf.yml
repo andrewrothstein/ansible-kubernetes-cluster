@@ -43,5 +43,3 @@
     owner: '{{k8s_user}}'
     group: '{{k8s_group}}'
     mode: '0644'
-  notify:
-    - restarting k8s services

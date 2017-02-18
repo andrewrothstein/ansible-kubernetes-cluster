@@ -31,6 +31,9 @@ spec:
       containers:
       - name: kubernetes-dashboard
         image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.5.1
+        args:
+          - --v={{k8s_log_level}}
+          - --logtostderr=true
         ports:
         - containerPort: 9090
           protocol: TCP
@@ -50,6 +53,7 @@ metadata:
     app: kubernetes-dashboard
     kubernetes.io/cluster-service: "true"
 spec:
+  type: NodePort
   selector:
     app: kubernetes-dashboard
   ports:
