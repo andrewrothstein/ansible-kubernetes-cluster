@@ -42,4 +42,4 @@
     dest: '{{k8s_conf_dir}}/{{item}}'
     owner: '{{k8s_user}}'
     group: '{{k8s_group}}'
-    mode: '0644'
+    mode: '0600'
