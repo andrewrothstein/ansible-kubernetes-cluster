@@ -11,8 +11,8 @@ metadata:
     kubernetes.io/cluster-service: "true"
 type: kubernetes.io/tls
 data:
-  tls.crt: {{k8s_pki_ingress_tls_cert_dest}}
-  tls.key: {{k8s_pki_ingress_tls_key_dest}}
+  tls.crt: {{ lookup('file', k8s_pki_ingress_tls_cert_src) | b64encode }}
+  tls.key: {{ lookup('file', k8s_pki_ingress_tls_key_src) | b64encode }}
 {% endif %}
 ---
 # Ingress Definition for UI
