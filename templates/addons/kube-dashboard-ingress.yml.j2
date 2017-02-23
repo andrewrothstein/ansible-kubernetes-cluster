@@ -1,0 +1,41 @@
+{% if k8s_secured %}
+# Create tls-secret
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tls-secret
+  namespace: kube-system
+  labels:
+    app: kubernetes-dashboard
+    kubernetes.io/cluster-service: "true"
+type: kubernetes.io/tls
+data:
+  tls.crt: {{k8s_pki_ingress_tls_cert_dest}}
+  tls.key: {{k8s_pki_ingress_tls_key_dest}}
+{% endif %}
+---
+# Ingress Definition for UI
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kubernetes-dashboard-webui
+  namespace: kube-system
+  labels:
+    app: kubernetes-dashboard
+    kubernetes.io/cluster-service: "true"
+spec:
+{% if k8s_secured %}
+  tls:
+    - secretName: tls-secret
+      hosts:
+      - k8s-dashboard.{{k8s_external_domain}}
+{% endif %}
+  rules:
+    - host: k8s-dashboard.{{k8s_external_domain}}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: kubernetes-dashboard
+              servicePort: 80
