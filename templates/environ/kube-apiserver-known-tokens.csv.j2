@@ -1,2 +1,6 @@
 {{k8s_apiserver_token}},{{k8s_user}},{{k8s_user_id.msg}}
-{% if k8s_nonsystem_users is defined %}{% for user in  k8s_nonsystem_users %}{{user.token}},{{user.name}},{{user.uid}}{% endfor %}{% endif %}
+{% if k8s_nonsystem_users is defined %}
+{% for user in  k8s_nonsystem_users %}
+{{user.token}},{{user.name}},{{user.uid}}
+{% endfor %}
+{% endif %}
