@@ -19,8 +19,6 @@
     - { f: '{{k8s_pki_ca_cert_src}}', d: '{{k8s_pki_ca_cert_dest}}', m: '0400' }
     - { f: '{{k8s_pki_service_account_key_src}}', d: '{{k8s_pki_service_account_key_dest}}', m: '0400' }
     - { f: '{{k8s_pki_service_account_cert_src}}', d: '{{k8s_pki_service_account_cert_dest}}', m: '0400'}
-    - { f: '{{k8s_pki_ingress_tls_key_src}}', d: '{{k8s_pki_ingress_tls_key_dest}}', m: '0400' }
-    - { f: '{{k8s_pki_ingress_tls_cert_src}}', d: '{{k8s_pki_ingress_tls_cert_dest}}', m: '0400'}
   copy:
     src: '{{item.f}}'
     dest: '{{item.d}}'
