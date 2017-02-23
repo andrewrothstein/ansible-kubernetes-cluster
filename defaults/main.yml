@@ -12,6 +12,16 @@ k8s_src_pki_dir: ~/pki-dir
 k8s_pki_key_suffix: '-key.pem'
 k8s_pki_cert_suffix: '.pem'
 
+# Use following vars to provide separate keys and certs for service account
+# If not provided, it will use key/cert pair of first master node
+#k8s_pki_service_account_key: k8s-service-account-key.pem
+#k8s_pki_service_account_cert: k8s-service-account-cert.pem
+
+# Use following vars to provide separate keys and certs for TLS termination at ingress controller
+# If not provided, it will use key/cert pair of first master node
+#k8s_pki_ingress_tls_key: k8s-ingress-tls-key.pem
+#k8s_pki_ingress_tls_cert: k8s-ingress-tls-cert.pem
+
 #k8s_init: systemd
 k8s_install_dir : /usr/local/bin
 k8s_conf_dir: /etc/kubernetes
@@ -81,7 +91,12 @@ k8s_cluster_addons:
   - kube-dns
   - kube-dns-autoscaler
   - kube-dashboard
+  - kube-dashboard-ingress
+  - nginx
   #- node-problem-detector
 
 # Following vars will be used to create kubectl context that would be used to connect apiserver using cluster ip
 k8s_internal_cluster_name: mykubecluster-internal
+
+# External domain name that will be used to create Ingress rules
+k8s_external_domain: example.com
