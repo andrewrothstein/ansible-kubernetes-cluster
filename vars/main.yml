@@ -18,9 +18,6 @@ k8s_pki_ca_file : 'ca{{k8s_pki_cert_suffix}}'
 k8s_pki_ca_cert_src: '{{k8s_src_pki_dir}}/{{k8s_pki_ca_file}}'
 k8s_pki_ca_cert_dest : '{{k8s_dest_pki_dir}}/{{k8s_pki_ca_file}}'
 
-k8s_pki_ca_key_src: '{{k8s_src_pki_dir}}/ca-key.pem'
-k8s_pki_ca_key_dest: '{{k8s_dest_pki_dir}}/ca-key.pem'
-
 k8s_pki_service_account_key_file: '{% if k8s_pki_service_account_key is defined %}{{k8s_pki_service_account_key}}{% else %}{{k8s_apiserver_first_master}}{{k8s_pki_key_suffix}}{% endif %}'
 k8s_pki_service_account_key_src: '{{k8s_src_pki_dir}}/{{k8s_pki_service_account_key_file}}'
 k8s_pki_service_account_key_dest: '{{k8s_dest_pki_dir}}/k8s-service-account-key.pem'
@@ -68,11 +65,8 @@ k8s_kubelet_args: >-
   --cluster_domain={{k8s_cluster_domain}}
 
 k8s_kube_controller_manager_secured_args: >-
-  --cluster-signing-cert-file={{k8s_pki_ca_cert_dest}}
-  --cluster-signing-key-file={{k8s_pki_ca_key_dest}}
   --root-ca-file={{k8s_pki_ca_cert_dest}}
   --service-account-private-key-file={{k8s_pki_service_account_key_dest}}
-
   
 k8s_kube_controller_manager_args: '{% if k8s_secured %}{{k8s_kube_controller_manager_secured_args}}{% endif %} --leader-elect=true'
 
