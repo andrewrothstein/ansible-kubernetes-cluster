@@ -56,6 +56,7 @@ k8s_allow_priv: False
 # Increase level for more verbose logging of components
 k8s_log_level: 0
 
+k8s_use_ips: False
 k8s_network_iface: eth0
 k8s_apiserver_secure_port: 6443
 k8s_apiserver_etcd_backend: etcd3
