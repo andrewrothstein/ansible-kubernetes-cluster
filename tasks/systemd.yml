@@ -12,13 +12,13 @@
 - name: systemctl daemon-reload
   become: yes
   become_user: root
-  when: '{{k8s_launch|default(True) and k8s_services.changed }}'
+  when: '{{k8s_launch and k8s_services|changed}}'
   command: systemctl daemon-reload
 
 - name: restarting k8s services
   become: yes
   become_user: root
-  when: '{{k8s_launch|default(True) and ( k8s_config.changed or k8s_env.changed or k8s_services.changed )}}'
+  when: '{{k8s_launch and (k8s_config|changed or k8s_env|changed or k8s_services|changed)}}'
   with_items: '{{k8s_components}}'
   service:
     name: '{{item}}'

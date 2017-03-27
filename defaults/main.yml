@@ -81,6 +81,7 @@ k8s_kube_scheduler_port: 10251
 #    uid: 9999
 #    token: 2acf2c6a-ecae-11e6-861e-07b09e188bff
 
+k8s_launch: True
 # Disable installation of addons by setting following parameter to False
 #k8s_install_addons: True
 
