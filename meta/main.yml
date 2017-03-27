@@ -26,4 +26,4 @@ galaxy_info:
 
 dependencies:
   - role: andrewrothstein.kubernetes
-    version: v1.1.5
+    version: v1.1.6
