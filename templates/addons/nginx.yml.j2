@@ -1,3 +1,17 @@
+# Config map for nginx
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  labels:
+    app: nginx-config
+    kubernetes.io/cluster-service: "true"
+  namespace: kube-system
+data:
+  server-name-hash-bucket-size: "128"
+  server-name-hash-max-size: "1024"
+
 # Deployment for default-backend
 ---
 apiVersion: extensions/v1beta1
@@ -77,10 +91,10 @@ spec:
       # however, it is not a hard dependency of the nginx-ingress-controller itself and it may cause issues if port 10254 already is taken on the host
       # that said, since hostPort is broken on CNI (https://github.com/kubernetes/kubernetes/issues/31307) we have to use hostNetwork where CNI is used
       # like with kubeadm
-      hostNetwork: true
+      # hostNetwork: true
       terminationGracePeriodSeconds: 60
       containers:
-      - image: gcr.io/google_containers/nginx-ingress-controller:0.8.3
+      - image: gcr.io/google_containers/nginx-ingress-controller:0.9.0-beta.3
         name: nginx-ingress-controller
         readinessProbe:
           httpGet:
@@ -112,3 +126,4 @@ spec:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
         - --v={{k8s_log_level}}
+        - --configmap=$(POD_NAMESPACE)/nginx-config
