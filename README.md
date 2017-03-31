@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-kubernetes-cluster.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-kubernetes-cluster)
 andrewrothstein.kubernetes-cluster
 =========
 
