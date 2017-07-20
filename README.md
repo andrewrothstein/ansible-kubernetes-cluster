@@ -58,5 +58,5 @@ Author Information
 ------------------
 
 * Andrew Rothstein <andrew.rothstein@gmail.com>
-* Fouad Semaan
+* Fouad Semaan <semaanfouad@gmail.com>
 * Vishal Shah <vishal.shah@nyu.edu>
