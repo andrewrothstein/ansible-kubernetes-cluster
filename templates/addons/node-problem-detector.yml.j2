@@ -1,6 +1,6 @@
 # Based on https://github.com/kubernetes/node-problem-detector
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta2
 kind: DaemonSet
 metadata:
   name: node-problem-detector
@@ -18,9 +18,8 @@ spec:
       - name: node-problem-detector
         command:
         - /node-problem-detector
-        - --kernel-monitor=/config/kernel-monitor.json
         - --logtostderr
-        image: gcr.io/google_containers/node-problem-detector:v0.2
+        image: gcr.io/google_containers/node-problem-detector:v0.4.1
         securityContext:
           privileged: true
         env:
@@ -37,9 +36,6 @@ spec:
         - name: localtime
           mountPath: /etc/localtime
           readOnly: true
-        - name: config
-          mountPath: /config
-          readOnly: true
       volumes:
       - name: log
         # Config `log` to your system log directory
@@ -48,6 +44,3 @@ spec:
       - name: localtime
         hostPath:
           path: /etc/localtime
-      - name: config
-        configMap:
-          name: node-problem-detector-config

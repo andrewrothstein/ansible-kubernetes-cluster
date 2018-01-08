@@ -72,6 +72,9 @@ k8s_apiserver_token: JKQ8n5stwH5UaTjfWNH4qli2bharF5wM
 
 k8s_kubelet_port: 10250
 
+# Makes the Kubelet fail to start if swap is enabled on the node
+k8s_kubelet_fail_swap: true
+
 k8s_kube_controller_manager_port: 10252
 
 k8s_kube_scheduler_port: 10251
