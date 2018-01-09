@@ -59,10 +59,9 @@ k8s_kubelet_tls: '{% if k8s_secured %}--tls-cert-file {{k8s_pki_cert_dest}} --tl
 k8s_kubelet_args: >-
   --node-ip {{k8s_public_ipv4}}
   {{k8s_kubelet_tls}}
-  --register-schedulable=true
-  --require-kubeconfig=true
   --cluster_dns={{k8s_cluster_dns}}
   --cluster_domain={{k8s_cluster_domain}}
+  --fail-swap-on={{k8s_kubelet_fail_swap}}
 
 k8s_kube_controller_manager_secured_args: >-
   --root-ca-file={{k8s_pki_ca_cert_dest}}
