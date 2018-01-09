@@ -1,6 +1,6 @@
-[![CircleCI](https://circleci.com/gh/andrewrothstein/ansible-kubernetes-cluster.svg?style=svg)](https://circleci.com/gh/andrewrothstein/ansible-kubernetes-cluster)
 andrewrothstein.kubernetes-cluster
 =========
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-kubernetes-cluster.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-kubernetes-cluster)
 
 Configures a Kubernetes cluster. Assumes you have a secured etcd cluster.
 
