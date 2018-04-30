@@ -32,6 +32,6 @@ galaxy_info:
 
 dependencies:
   - role: andrewrothstein.kubernetes
-    version: v1.3.2
+    version: v1.3.5
     kubernetes_install_server: True
     kubernetes_install_client: True
