@@ -3,16 +3,16 @@
   become: yes
   become_user: root
   with_items:
-    - d: '{{k8s_conf_dir}}'
+    - d: '{{ k8s_conf_dir }}'
       m: '0755'
-    - d: '{{k8s_home_dir}}/.kube'
+    - d: '{{ k8s_home_dir }}/.kube'
       m: '0700'
   file:
-    path: '{{item.d}}'
-    owner: '{{k8s_user}}'
-    group: '{{k8s_group}}'
+    path: '{{ item.d }}'
+    owner: '{{ k8s_user }}'
+    group: '{{ k8s_group }}'
     state: directory
-    mode: '{{item.m}}'
+    mode: '{{ item.m }}'
 
 - name: write kubeconfig...
   become: yes
@@ -20,14 +20,14 @@
   register: k8s_config
   with_items:
     - s: environ/kubeconfig.j2
-      d: '{{k8s_kubeconfig}}'
+      d: '{{ k8s_kubeconfig }}'
       m: '0600'
   template:
-    src: '{{item.s}}'
-    dest: '{{item.d}}'
-    mode: '{{item.m}}'
-    owner: '{{k8s_user}}'
-    group: '{{k8s_group}}'
+    src: '{{ item.s }}'
+    dest: '{{ item.d }}'
+    mode: '{{ item.m }}'
+    owner: '{{ k8s_user }}'
+    group: '{{ k8s_group }}'
 
 - name: configurating components...
   become: yes
@@ -36,10 +36,10 @@
   with_items:
     - config
     - kube-apiserver-known-tokens.csv
-    - '{{k8s_components}}'
+    - '{{ k8s_components }}'
   template:
-    src: environ/{{item}}.j2
-    dest: '{{k8s_conf_dir}}/{{item}}'
-    owner: '{{k8s_user}}'
-    group: '{{k8s_group}}'
+    src: environ/{{ item }}.j2
+    dest: '{{ k8s_conf_dir }}/{{ item }}'
+    owner: '{{ k8s_user }}'
+    group: '{{ k8s_group }}'
     mode: '0600'

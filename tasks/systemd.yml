@@ -2,24 +2,25 @@
 - name: installing services...
   become: yes
   become_user: root
-  with_items: '{{k8s_components}}'
+  with_items: '{{ k8s_components }}'
   register: k8s_services
   template:
-    src: services/{{item}}.service.j2
-    dest: /etc/systemd/system/{{item}}.service
+    src: services/{{ item }}.service.j2
+    dest: /etc/systemd/system/{{ item }}.service
     mode: '0644'
 
 - name: systemctl daemon-reload
   become: yes
   become_user: root
   when: k8s_launch and k8s_services is changed
-  command: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes
 
 - name: restarting k8s services
   become: yes
   become_user: root
   when: k8s_launch and (k8s_config is changed or k8s_env is changed or k8s_services is changed
-  with_items: '{{k8s_components}}'
+  with_items: '{{ k8s_components }}'
   service:
-    name: '{{item}}'
+    name: '{{ item }}'
     state: restarted
