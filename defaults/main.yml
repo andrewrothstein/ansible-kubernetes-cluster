@@ -23,7 +23,7 @@ k8s_pki_cert_suffix: '.pem'
 #k8s_pki_ingress_tls_cert: k8s-ingress-tls-cert.pem
 
 #k8s_init: systemd
-k8s_install_dir : /usr/local/bin
+k8s_install_dir: /usr/local/bin
 k8s_conf_dir: /etc/kubernetes
 k8s_dest_pki_dir: /etc/kubernetes/pki
 
@@ -88,7 +88,7 @@ k8s_launch: True
 # Disable installation of addons by setting following parameter to False
 #k8s_install_addons: True
 
-# TODO :
+# TODO:
 # 1. Add traefik ingress controller
 # 2. Add hipster with influxDB - https://github.com/kubernetes/heapster
 # 3. Make node-problem-detector work [Needs k8s_allow_priv=True]
