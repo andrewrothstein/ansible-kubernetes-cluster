@@ -42,11 +42,11 @@
     mode: '0755'
 
 - include_tasks: pki.yml
-  when: '{{ k8s_secured }}'
+  when: k8s_secured
 
 - include_tasks: conf.yml
 
-- include_tasks: '{{ k8s_init|default("systemd") }}.yml'
+- include_tasks: '{{ k8s_init | default("systemd") }}.yml'
 
 - include_tasks: addons.yml
-  when: '{{ k8s_install_addons | default(True) }}'
+  when: k8s_install_addons | default(True)
