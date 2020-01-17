@@ -1,8 +1,7 @@
 ---
 - hosts: all
   roles:
-    - role: '{{playbook_dir}}'
+    - role: '{{ playbook_dir }}'
       k8s_addl_groups: ''
       k8s_launch: False
-      k8s_src_pki_dir: '{{playbook_dir}}'
-      
+      k8s_src_pki_dir: '{{ playbook_dir }}'
