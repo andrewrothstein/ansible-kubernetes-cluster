@@ -35,8 +35,8 @@ k8s_master_components:
   - kube-controller-manager
   - kube-scheduler
 
-k8s_master_group_name: kubernetes-master
-k8s_etcd_master_group_name: etcd-master
+k8s_master_group_name: kubernetes_master
+k8s_etcd_master_group_name: etcd_master
   
 k8s_pod_cluster_cidr: 10.255.0.0/16
 k8s_service_cluster_ip_range: 10.254.0.0/16
